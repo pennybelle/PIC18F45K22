@@ -4,15 +4,15 @@ hint: 6	1354	 warning: "/*" within comment     /* ******************************
 diagnostics: 0	122	Compilation Started	display_utils.h
 warning: 103	1508	Implicit conversion of int to ptr	numbering_systems.c
 warning: 105	1508	Implicit conversion of int to ptr	numbering_systems.c
-warning: 111	1506	Implicit conversion of pointer to int	numbering_systems.c
-warning: 111	1506	Implicit conversion of pointer to int	numbering_systems.c
-diagnostics: 128	123	Compiled Successfully	numbering_systems.c
+warning: 118	1506	Implicit conversion of pointer to int	numbering_systems.c
+warning: 118	1506	Implicit conversion of pointer to int	numbering_systems.c
+diagnostics: 137	123	Compiled Successfully	numbering_systems.c
 diagnostics: 0	122	Compilation Started	Display_Utils.c
 diagnostics: 15	123	Compiled Successfully	Display_Utils.c
-diagnostics: 0	127	All files Compiled in 218 ms	 
-hint: 0	1144	Used RAM (bytes): 57 (4%)  Free RAM (bytes): 1458 (96%)	Used RAM (bytes): 57 (4%)  Free RAM (bytes): 1458 (96%)
-hint: 0	1144	Used ROM (bytes): 1728 (5%)  Free ROM (bytes): 31040 (95%)	Used ROM (bytes): 1728 (5%)  Free ROM (bytes): 31040 (95%)
+diagnostics: 0	127	All files Compiled in 219 ms	 
+hint: 0	1144	Used RAM (bytes): 55 (4%)  Free RAM (bytes): 1460 (96%)	Used RAM (bytes): 55 (4%)  Free RAM (bytes): 1460 (96%)
+hint: 0	1144	Used ROM (bytes): 1770 (5%)  Free ROM (bytes): 30998 (95%)	Used ROM (bytes): 1770 (5%)  Free ROM (bytes): 30998 (95%)
 diagnostics: 0	125	Project Linked Successfully	numbering_systems.mcppi
-diagnostics: 0	128	Linked in 47 ms	 
-diagnostics: 0	129	Project 'numbering_systems.mcppi' completed: 406 ms	 
-diagnostics: 0	103	Finished successfully: 18 Mar 2025, 15:23:20	numbering_systems.mcppi
+diagnostics: 0	128	Linked in 31 ms	 
+diagnostics: 0	129	Project 'numbering_systems.mcppi' completed: 391 ms	 
+diagnostics: 0	103	Finished successfully: 18 Mar 2025, 15:31:52	numbering_systems.mcppi

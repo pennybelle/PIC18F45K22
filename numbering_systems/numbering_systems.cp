@@ -101,6 +101,13 @@ void lcd_display_out(char first_line, char second_line) {
  Lcd_Out(2,1,second_line);
 }
 
+void do_the_thing(int i) {
+ number = i;
+ seven_seg_out();
+ PORTC = number;
+ vdelay_ms(delay_in_ms);
+}
+
 void main() {
  lcd_display_prep();
  seven_seg_prep();
@@ -111,14 +118,16 @@ void main() {
  PORTC=0b00000000;
 
  while (1) {
- number = 0b00001111;
- seven_seg_out();
- PORTC = number;
- vdelay_ms(delay_in_ms);
 
- number = 0b11110000;
- seven_seg_out();
- PORTC = number;
- vdelay_ms(delay_in_ms);
+ for (i = 0; i < 5; i++) {
+ do_the_thing(0b00001111);
+ do_the_thing(0b11110000);
+ }
+
+
+ for (i = 0; i < 5; i++) {
+ do_the_thing(0b01010101);
+ do_the_thing(0b10101010);
+ }
  }
 }

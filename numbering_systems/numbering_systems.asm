@@ -50,7 +50,7 @@ L_interrupt1:
 	BCF         TMR0IF_bit+0, BitPos(TMR0IF_bit+0) 
 ;numbering_systems.c,58 :: 		}
 L_end_interrupt:
-L__interrupt5:
+L__interrupt11:
 	RETFIE      1
 ; end of _interrupt
 
@@ -263,62 +263,102 @@ L_end_lcd_display_out:
 	RETURN      0
 ; end of _lcd_display_out
 
+_do_the_thing:
+
+;numbering_systems.c,108 :: 		void do_the_thing(int i) {
+;numbering_systems.c,109 :: 		number = i;
+	MOVF        FARG_do_the_thing_i+0, 0 
+	MOVWF       _number+0 
+	MOVF        FARG_do_the_thing_i+1, 0 
+	MOVWF       _number+1 
+;numbering_systems.c,110 :: 		seven_seg_out();
+	CALL        _seven_seg_out+0, 0
+;numbering_systems.c,111 :: 		PORTC = number;
+	MOVF        _number+0, 0 
+	MOVWF       PORTC+0 
+;numbering_systems.c,112 :: 		vdelay_ms(delay_in_ms);
+	MOVF        _delay_in_ms+0, 0 
+	MOVWF       FARG_VDelay_ms_Time_ms+0 
+	MOVF        _delay_in_ms+1, 0 
+	MOVWF       FARG_VDelay_ms_Time_ms+1 
+	CALL        _VDelay_ms+0, 0
+;numbering_systems.c,113 :: 		}
+L_end_do_the_thing:
+	RETURN      0
+; end of _do_the_thing
+
 _main:
 
-;numbering_systems.c,108 :: 		void main() {
-;numbering_systems.c,109 :: 		lcd_display_prep();
+;numbering_systems.c,115 :: 		void main() {
+;numbering_systems.c,116 :: 		lcd_display_prep();
 	CALL        _lcd_display_prep+0, 0
-;numbering_systems.c,110 :: 		seven_seg_prep();
+;numbering_systems.c,117 :: 		seven_seg_prep();
 	CALL        _seven_seg_prep+0, 0
-;numbering_systems.c,111 :: 		lcd_display_out(txt1, signature);
+;numbering_systems.c,118 :: 		lcd_display_out(txt1, signature);
 	MOVLW       _txt1+0
 	MOVWF       FARG_lcd_display_out_first_line+0 
 	MOVLW       _signature+0
 	MOVWF       FARG_lcd_display_out_second_line+0 
 	CALL        _lcd_display_out+0, 0
-;numbering_systems.c,113 :: 		TRISC=0b00000000; // set port C as output for all bits
+;numbering_systems.c,120 :: 		TRISC=0b00000000; // set port C as output for all bits
 	CLRF        TRISC+0 
-;numbering_systems.c,114 :: 		TRISC=0x00;       // same as above but with hex instead of binary
+;numbering_systems.c,121 :: 		TRISC=0x00;       // same as above but with hex instead of binary
 	CLRF        TRISC+0 
-;numbering_systems.c,115 :: 		PORTC=0b00000000; // clear port C (set all to logic low or 0 volts)
+;numbering_systems.c,122 :: 		PORTC=0b00000000; // clear port C (set all to logic low or 0 volts)
 	CLRF        PORTC+0 
-;numbering_systems.c,117 :: 		while (1) {
+;numbering_systems.c,124 :: 		while (1) {
 L_main2:
-;numbering_systems.c,118 :: 		number = 0b00001111;
+;numbering_systems.c,126 :: 		for (i = 0; i < 5; i++) {
+	CLRF        _i+0 
+L_main4:
+	MOVLW       5
+	SUBWF       _i+0, 0 
+	BTFSC       STATUS+0, 0 
+	GOTO        L_main5
+;numbering_systems.c,127 :: 		do_the_thing(0b00001111);
 	MOVLW       15
-	MOVWF       _number+0 
+	MOVWF       FARG_do_the_thing_i+0 
 	MOVLW       0
-	MOVWF       _number+1 
-;numbering_systems.c,119 :: 		seven_seg_out();
-	CALL        _seven_seg_out+0, 0
-;numbering_systems.c,120 :: 		PORTC = number;
-	MOVF        _number+0, 0 
-	MOVWF       PORTC+0 
-;numbering_systems.c,121 :: 		vdelay_ms(delay_in_ms);
-	MOVF        _delay_in_ms+0, 0 
-	MOVWF       FARG_VDelay_ms_Time_ms+0 
-	MOVF        _delay_in_ms+1, 0 
-	MOVWF       FARG_VDelay_ms_Time_ms+1 
-	CALL        _VDelay_ms+0, 0
-;numbering_systems.c,123 :: 		number = 0b11110000;
+	MOVWF       FARG_do_the_thing_i+1 
+	CALL        _do_the_thing+0, 0
+;numbering_systems.c,128 :: 		do_the_thing(0b11110000);
 	MOVLW       240
-	MOVWF       _number+0 
+	MOVWF       FARG_do_the_thing_i+0 
 	MOVLW       0
-	MOVWF       _number+1 
-;numbering_systems.c,124 :: 		seven_seg_out();
-	CALL        _seven_seg_out+0, 0
-;numbering_systems.c,125 :: 		PORTC = number;
-	MOVF        _number+0, 0 
-	MOVWF       PORTC+0 
-;numbering_systems.c,126 :: 		vdelay_ms(delay_in_ms);
-	MOVF        _delay_in_ms+0, 0 
-	MOVWF       FARG_VDelay_ms_Time_ms+0 
-	MOVF        _delay_in_ms+1, 0 
-	MOVWF       FARG_VDelay_ms_Time_ms+1 
-	CALL        _VDelay_ms+0, 0
-;numbering_systems.c,127 :: 		}
+	MOVWF       FARG_do_the_thing_i+1 
+	CALL        _do_the_thing+0, 0
+;numbering_systems.c,126 :: 		for (i = 0; i < 5; i++) {
+	INCF        _i+0, 1 
+;numbering_systems.c,129 :: 		}
+	GOTO        L_main4
+L_main5:
+;numbering_systems.c,132 :: 		for (i = 0; i < 5; i++) {
+	CLRF        _i+0 
+L_main7:
+	MOVLW       5
+	SUBWF       _i+0, 0 
+	BTFSC       STATUS+0, 0 
+	GOTO        L_main8
+;numbering_systems.c,133 :: 		do_the_thing(0b01010101);
+	MOVLW       85
+	MOVWF       FARG_do_the_thing_i+0 
+	MOVLW       0
+	MOVWF       FARG_do_the_thing_i+1 
+	CALL        _do_the_thing+0, 0
+;numbering_systems.c,134 :: 		do_the_thing(0b10101010);
+	MOVLW       170
+	MOVWF       FARG_do_the_thing_i+0 
+	MOVLW       0
+	MOVWF       FARG_do_the_thing_i+1 
+	CALL        _do_the_thing+0, 0
+;numbering_systems.c,132 :: 		for (i = 0; i < 5; i++) {
+	INCF        _i+0, 1 
+;numbering_systems.c,135 :: 		}
+	GOTO        L_main7
+L_main8:
+;numbering_systems.c,136 :: 		}
 	GOTO        L_main2
-;numbering_systems.c,128 :: 		}
+;numbering_systems.c,137 :: 		}
 L_end_main:
 	GOTO        $+0
 ; end of _main

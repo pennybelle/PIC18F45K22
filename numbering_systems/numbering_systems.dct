@@ -687,6 +687,7 @@ div_32x32_s
 div_32x32_u
 div_8x8_s
 div_8x8_u
+do_the_thing
 done
 done_bit
 double2byte
