@@ -32,11 +32,16 @@ char i;                              // Loop variable
 char txt1[] = "Bit Walk";
 char txt2[] = "Bit Climb";
 char txt3[] = "Reverse Bit Walk";
+char txt4[] = "Bit Walk Sped Up";
 char empty_txt[] = "By Penny Belle";
 // End Lcd module prep
 
 // decimal value used in incrementing bit_walk()
 int number = 1;
+
+// used in incrementing delay
+int new_delay = 500;
+int iteration_count = 1000;
 
 void interrupt() {
   LATA = 0;                             // Turn off all 7seg displays
@@ -166,6 +171,30 @@ int main() {
       seven_seg_out();
       reverse_bit_walk(750);
     }
+    reset_prog();
+
+    // Fast Bit Walk
+    lcd_display_out(txt4, empty_txt);
+    while (iteration_count > 0) {
+      number_check(1);
+      while(number <= 128) {
+        seven_seg_out();
+        bit_walk(new_delay); // parameter is delay in milliseconds
+      }
+//      number_check(128);
+//      while(number >= 1) {
+//        seven_seg_out();
+//        reverse_bit_walk(new_delay);
+//      }
+      if (new_delay >= 100) {
+        new_delay = new_delay - 100;
+      } else if (new_delay < 100) {
+        new_delay = 0;
+      }
+      iteration_count--;
+    }
+    new_delay = 500;
+    iteration_count = 1000;
     reset_prog();
 
     // Bit Climb
