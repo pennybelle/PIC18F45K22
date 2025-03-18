@@ -33,4 +33,10 @@ main
 					Div_16x16_S_L
 			VDelay_ms
 				Mul_32x32_U
+	display_bits
+		seven_seg_out
+			Div_16X16_U
+			mask
+			Div_16x16_S
+				Div_16x16_S_L
 interrupt

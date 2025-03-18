@@ -679,6 +679,7 @@ dhen
 dhen_bit
 dhen_ssp1con3_bit
 digit
+display_bits
 div_16x16_s
 div_16x16_s_l
 div_16x16_u
@@ -2359,6 +2360,8 @@ txt1
 txt2
 txt3
 txt4
+txt5
+txt6
 ua
 ua_bit
 ua_ssp1stat_bit

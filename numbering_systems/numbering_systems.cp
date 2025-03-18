@@ -29,6 +29,8 @@ char txt1[] = "C Number Systems";
 char txt2[] = "Using: Binary";
 char txt3[] = "Using: Octal";
 char txt4[] = "Using: Hex";
+char txt5[] = "Using: Decimal";
+char txt6[] = "Binary Display";
 char signature[] = "By Penny Belle";
 
 
@@ -119,6 +121,13 @@ void procedure_loop(int number_1, int number_2) {
  delay_ms(1500);
  LATD = 0;
 }
+#line 140 "C:/Users/michelle/Documents/GitHub/PIC18F45K22/numbering_systems/numbering_systems.c"
+display_bits(int i) {
+ number = i;
+ seven_seg_out();
+ PORTC = number;
+ delay_ms(10000);
+}
 
 void main() {
  lcd_display_prep();
@@ -129,7 +138,8 @@ void main() {
  TRISC=0x00;
  PORTC=0b00000000;
 
- delay_ms(2000);
+
+ delay_ms(3000);
 
  while (1) {
 
@@ -147,5 +157,20 @@ void main() {
 
  lcd_display_out(txt1, txt4);
  procedure_loop(0x55, 0xAA);
+
+
+ lcd_display_out(txt1, txt5);
+ procedure_loop(85, 170);
+
+ lcd_display_out(txt6, signature);
+ display_bits(0xA5);
+ display_bits(186);
+ display_bits(055);
+ display_bits(0xF3);
+ display_bits(28);
+ display_bits(0212);
+ display_bits(255);
+ display_bits(0252);
+ display_bits(0xF1);
  }
 }
