@@ -1395,6 +1395,7 @@ preinc1
 preinc2
 prisd
 prisd_bit
+procedure_loop
 prod
 prodh
 prodl
@@ -2355,6 +2356,9 @@ txsta
 txsta1
 txsta2
 txt1
+txt2
+txt3
+txt4
 ua
 ua_bit
 ua_ssp1stat_bit

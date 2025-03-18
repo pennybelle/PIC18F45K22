@@ -30,6 +30,10 @@ sbit LCD_D7_Direction at TRISB3_bit;
 char i;                              // Loop variable
 
 char txt1[] = "C Number Systems";
+char txt2[] = "Using: Binary";
+char txt3[] = "Using: Octal";
+char txt4[] = "Using: Hex";
+char txt5[] = "Using: Decimal";
 char signature[] = "By Penny Belle";
 // End Lcd module prep
 
@@ -112,6 +116,15 @@ void do_the_thing(int i) {
   vdelay_ms(delay_in_ms);
 }
 
+void procedure_loop(int number_1, int number_2) {
+    for (i = 0; i < 5; i++) {
+      do_the_thing(number_1);
+      do_the_thing(number_2);
+    }
+    delay_ms(1500);
+    LATD  = 0; // clear seven seg display
+}
+
 void main() {
   lcd_display_prep();
   seven_seg_prep();
@@ -121,17 +134,28 @@ void main() {
   TRISC=0x00;       // same as above but with hex instead of binary
   PORTC=0b00000000; // clear port C (set all to logic low or 0 volts)
   
+  // wait for plug
+  delay_ms(3000);
+  
   while (1) {
     // procedure 1
-    for (i = 0; i < 5; i++) {
-      do_the_thing(0b00001111);
-      do_the_thing(0b11110000);
-    }
-    
+    lcd_display_out(txt1, txt2);
+    procedure_loop(0b00001111, 0b11110000);
+
     // procedure 2
-    for (i = 0; i < 5; i++) {
-      do_the_thing(0b01010101);
-      do_the_thing(0b10101010);
-    }
+    lcd_display_out(txt1, txt2);
+    procedure_loop(0b01010101, 0b10101010);
+
+    // procedure 3
+    lcd_display_out(txt1, txt3);
+    procedure_loop(0125, 0252);
+
+    // procedure 4
+    lcd_display_out(txt1, txt4);
+    procedure_loop(0x55, 0xAA);
+
+    // procedure 5
+    lcd_display_out(txt1, txt5);
+    procedure_loop(85, 170);
   }
 }
