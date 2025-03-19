@@ -126,7 +126,7 @@ L_main2:
 	MOVF        PORTE+0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_main4
-;io_control.c,107 :: 		if (PORTD == 0b00000101) {
+;io_control.c,107 :: 		if (PORTD == 0x05) {
 	MOVF        PORTD+0, 0 
 	XORLW       5
 	BTFSS       STATUS+0, 2 

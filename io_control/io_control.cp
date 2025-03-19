@@ -91,7 +91,7 @@ void main() {
 
 
  if (PORTE) {
- if (PORTD == 0b00000101) {
+ if (PORTD == 0x05) {
  lcd_update(txt4);
  PORTC = 0xFF;
  delay_ms(500);
