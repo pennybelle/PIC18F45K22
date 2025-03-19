@@ -50,7 +50,7 @@ L_interrupt1:
 	BCF         TMR0IF_bit+0, BitPos(TMR0IF_bit+0) 
 ;knight_rider.c,66 :: 		}
 L_end_interrupt:
-L__interrupt21:
+L__interrupt22:
 	RETFIE      1
 ; end of _interrupt
 
@@ -293,12 +293,12 @@ _reverse_bit_walk:
 	BTFSC       _number+1, 6 
 	BSF         _number+1, 7 
 	BTFSS       _number+1, 7 
-	GOTO        L__reverse_bit_walk28
+	GOTO        L__reverse_bit_walk29
 	BTFSS       STATUS+0, 0 
-	GOTO        L__reverse_bit_walk28
+	GOTO        L__reverse_bit_walk29
 	INFSNZ      _number+0, 1 
 	INCF        _number+1, 1 
-L__reverse_bit_walk28:
+L__reverse_bit_walk29:
 ;knight_rider.c,122 :: 		}
 L_end_reverse_bit_walk:
 	RETURN      0
@@ -334,10 +334,10 @@ L_knight_rider4:
 	MOVF        _iteration+1, 0 
 	SUBWF       _max_iterations+1, 0 
 	BTFSS       STATUS+0, 2 
-	GOTO        L__knight_rider30
+	GOTO        L__knight_rider31
 	MOVF        _iteration+0, 0 
 	SUBWF       _max_iterations+0, 0 
-L__knight_rider30:
+L__knight_rider31:
 	BTFSS       STATUS+0, 0 
 	GOTO        L_knight_rider5
 ;knight_rider.c,135 :: 		while (number != 128) {
@@ -345,10 +345,10 @@ L_knight_rider6:
 	MOVLW       0
 	XORWF       _number+1, 0 
 	BTFSS       STATUS+0, 2 
-	GOTO        L__knight_rider31
+	GOTO        L__knight_rider32
 	MOVLW       128
 	XORWF       _number+0, 0 
-L__knight_rider31:
+L__knight_rider32:
 	BTFSC       STATUS+0, 2 
 	GOTO        L_knight_rider7
 ;knight_rider.c,136 :: 		if (is_variable && delay >= 20) {
@@ -361,13 +361,13 @@ L__knight_rider31:
 	MOVLW       128
 	SUBWF       R0, 0 
 	BTFSS       STATUS+0, 2 
-	GOTO        L__knight_rider32
+	GOTO        L__knight_rider33
 	MOVLW       20
 	SUBWF       FARG_knight_rider_delay+0, 0 
-L__knight_rider32:
+L__knight_rider33:
 	BTFSS       STATUS+0, 0 
 	GOTO        L_knight_rider10
-L__knight_rider19:
+L__knight_rider20:
 ;knight_rider.c,137 :: 		delay -= 20;
 	MOVLW       20
 	SUBWF       FARG_knight_rider_delay+0, 1 
@@ -394,10 +394,10 @@ L_knight_rider11:
 	MOVLW       0
 	XORWF       _number+1, 0 
 	BTFSS       STATUS+0, 2 
-	GOTO        L__knight_rider33
+	GOTO        L__knight_rider34
 	MOVLW       1
 	XORWF       _number+0, 0 
-L__knight_rider33:
+L__knight_rider34:
 	BTFSC       STATUS+0, 2 
 	GOTO        L_knight_rider12
 ;knight_rider.c,146 :: 		if (is_variable && delay >= 20) {
@@ -410,13 +410,13 @@ L__knight_rider33:
 	MOVLW       128
 	SUBWF       R0, 0 
 	BTFSS       STATUS+0, 2 
-	GOTO        L__knight_rider34
+	GOTO        L__knight_rider35
 	MOVLW       20
 	SUBWF       FARG_knight_rider_delay+0, 0 
-L__knight_rider34:
+L__knight_rider35:
 	BTFSS       STATUS+0, 0 
 	GOTO        L_knight_rider15
-L__knight_rider18:
+L__knight_rider19:
 ;knight_rider.c,147 :: 		delay -= 20;
 	MOVLW       20
 	SUBWF       FARG_knight_rider_delay+0, 1 
@@ -465,13 +465,74 @@ _main:
 	CLRF        PORTC+0 
 ;knight_rider.c,168 :: 		while (1) {
 L_main16:
-;knight_rider.c,170 :: 		knight_rider(1, false);
+;knight_rider.c,169 :: 		lcd_display_out(txt1, txt2);
+	MOVLW       _txt1+0
+	MOVWF       FARG_lcd_display_out_first_line+0 
+	MOVLW       _txt2+0
+	MOVWF       FARG_lcd_display_out_second_line+0 
+	CALL        _lcd_display_out+0, 0
+;knight_rider.c,170 :: 		knight_rider(500, false);
+	MOVLW       244
+	MOVWF       FARG_knight_rider_delay+0 
 	MOVLW       1
+	MOVWF       FARG_knight_rider_delay+1 
+	CLRF        FARG_knight_rider_is_variable+0 
+	CALL        _knight_rider+0, 0
+;knight_rider.c,172 :: 		lcd_display_out(txt1, txt3);
+	MOVLW       _txt1+0
+	MOVWF       FARG_lcd_display_out_first_line+0 
+	MOVLW       _txt3+0
+	MOVWF       FARG_lcd_display_out_second_line+0 
+	CALL        _lcd_display_out+0, 0
+;knight_rider.c,173 :: 		knight_rider(600, false);
+	MOVLW       88
+	MOVWF       FARG_knight_rider_delay+0 
+	MOVLW       2
+	MOVWF       FARG_knight_rider_delay+1 
+	CLRF        FARG_knight_rider_is_variable+0 
+	CALL        _knight_rider+0, 0
+;knight_rider.c,175 :: 		lcd_display_out(txt1, txt4);
+	MOVLW       _txt1+0
+	MOVWF       FARG_lcd_display_out_first_line+0 
+	MOVLW       _txt4+0
+	MOVWF       FARG_lcd_display_out_second_line+0 
+	CALL        _lcd_display_out+0, 0
+;knight_rider.c,176 :: 		knight_rider(150, false);
+	MOVLW       150
 	MOVWF       FARG_knight_rider_delay+0 
 	MOVLW       0
 	MOVWF       FARG_knight_rider_delay+1 
 	CLRF        FARG_knight_rider_is_variable+0 
 	CALL        _knight_rider+0, 0
+;knight_rider.c,178 :: 		lcd_display_out(txt1, txt5);
+	MOVLW       _txt1+0
+	MOVWF       FARG_lcd_display_out_first_line+0 
+	MOVLW       _txt5+0
+	MOVWF       FARG_lcd_display_out_second_line+0 
+	CALL        _lcd_display_out+0, 0
+;knight_rider.c,179 :: 		knight_rider(500, true);  // variable delay, increases each iteration
+	MOVLW       244
+	MOVWF       FARG_knight_rider_delay+0 
+	MOVLW       1
+	MOVWF       FARG_knight_rider_delay+1 
+	MOVLW       1
+	MOVWF       FARG_knight_rider_is_variable+0 
+	CALL        _knight_rider+0, 0
+;knight_rider.c,181 :: 		delay_ms(2000);
+	MOVLW       21
+	MOVWF       R11, 0
+	MOVLW       75
+	MOVWF       R12, 0
+	MOVLW       190
+	MOVWF       R13, 0
+L_main18:
+	DECFSZ      R13, 1, 1
+	BRA         L_main18
+	DECFSZ      R12, 1, 1
+	BRA         L_main18
+	DECFSZ      R11, 1, 1
+	BRA         L_main18
+	NOP
 ;knight_rider.c,182 :: 		}
 	GOTO        L_main16
 ;knight_rider.c,183 :: 		}

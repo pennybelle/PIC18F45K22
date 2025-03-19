@@ -1,14 +1,9 @@
-#line 1 "C:/Users/michelle/Documents/GitHub/PIC18F45K22/knight_rider/knight_rider.c"
-#line 1 "c:/users/public/documents/mikroelektronika/mikroc pro for pic/include/stdbool.h"
-
-
-
- typedef char _Bool;
-#line 1 "c:/users/michelle/documents/github/pic18f45k22/knight_rider/display_utils.h"
+#line 1 "C:/Users/michelle/Documents/GitHub/PIC18F45K22/hex_to_binary/hex_to_binary.c"
+#line 1 "c:/users/michelle/documents/github/pic18f45k22/hex_to_binary/display_utils.h"
 
 
 unsigned short mask(unsigned short num);
-#line 12 "C:/Users/michelle/Documents/GitHub/PIC18F45K22/knight_rider/knight_rider.c"
+#line 11 "C:/Users/michelle/Documents/GitHub/PIC18F45K22/hex_to_binary/hex_to_binary.c"
 unsigned short shifter, portd_index;
 unsigned int digit;
 unsigned short portd_array[4];
@@ -30,22 +25,31 @@ sbit LCD_D7_Direction at TRISB3_bit;
 
 char i;
 
-char txt1[] = "Knight Rider";
-char txt2[] = "Delay: 500ms";
-char txt3[] = "Delay: 600ms";
-char txt4[] = "Delay: 150ms";
-char txt5[] = "Variable Delay";
+char txt1[] = "Show Binary Val";
 char signature[] = "By Penny Belle";
 
 
+int number;
 
-int number = 1;
+int delay = 10000;
 
+int dec1 = 255;
+int dec2 = 129;
+int dec3 = 170;
+int dec4 = 55;
+int dec5 = 85;
 
-unsigned int delay_in_ms = 500;
-unsigned int delay_taken = 0;
-unsigned int iteration;
-unsigned int max_iterations;
+int bin1 = 0b10101010;
+int bin2 = 0b01010101;
+int bin3 = 0b11111111;
+int bin4 = 0b11110000;
+int bin5 = 0b00001111;
+
+int hex1 = 0x55;
+int hex2 = 0xAA;
+int hex3 = 0xFE;
+int hex4 = 0xAB;
+int hex5 = 0x81;
 
 void interrupt() {
  LATA = 0;
@@ -109,48 +113,11 @@ void lcd_display_out(char first_line, char second_line) {
  Lcd_Out(2,1,second_line);
 }
 
-void bit_walk(int delay) {
+void do_the_thing(int i) {
+ number = i;
  PORTC = number;
- vdelay_ms(delay);
- number *= 2;
-}
-
-void reverse_bit_walk(int delay) {
- PORTC = number;
- vdelay_ms(delay);
- number /= 2;
-}
-
-void knight_rider(int delay,  _Bool  is_variable) {
- iteration = 0;
- if (is_variable) {
- max_iterations = 10000;
- } else {
- max_iterations = 15;
- }
-
-
- while (iteration <= max_iterations) {
-
- while (number != 128) {
- if (is_variable && delay >= 20) {
- delay -= 20;
- }
  seven_seg_out();
- bit_walk(delay);
- iteration++;
- }
-
-
- while (number != 1) {
- if (is_variable && delay >= 20) {
- delay -= 20;
- }
- seven_seg_out();
- reverse_bit_walk(delay);
- iteration++;
- }
- }
+ vdelay_ms(delay);
 }
 
 void main() {
@@ -158,26 +125,26 @@ void main() {
  seven_seg_prep();
  lcd_display_out(txt1, signature);
 
-
- TRISC=0x00;
- PORTC=0b00000000;
-
-
-
+ TRISC = 0x00;
+ PORTC = 0x00;
 
  while (1) {
- lcd_display_out(txt1, txt2);
- knight_rider(500,  0 );
+ do_the_thing(dec1);
+ do_the_thing(dec2);
+ do_the_thing(dec3);
+ do_the_thing(dec4);
+ do_the_thing(dec5);
 
- lcd_display_out(txt1, txt3);
- knight_rider(600,  0 );
+ do_the_thing(bin1);
+ do_the_thing(bin2);
+ do_the_thing(bin3);
+ do_the_thing(bin4);
+ do_the_thing(bin5);
 
- lcd_display_out(txt1, txt4);
- knight_rider(150,  0 );
-
- lcd_display_out(txt1, txt5);
- knight_rider(500,  1 );
-
- delay_ms(2000);
+ do_the_thing(hex1);
+ do_the_thing(hex2);
+ do_the_thing(hex3);
+ do_the_thing(hex4);
+ do_the_thing(hex5);
  }
 }

@@ -1,0 +1,18 @@
+0	1	mikroCPIC1618.exe -MSF -DBG -pP18F45K22 -DL -O11111114 -fo8 -N"C:\Users\michelle\Documents\GitHub\PIC18F45K22\hex_to_binary\hex_to_binary.mcppi" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Defs\" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\uses\P18\" -SP"C:\Users\michelle\Documents\GitHub\PIC18F45K22\hex_to_binary\" -IP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\uses\P18\" "hex_to_binary.c" "Display_Utils.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl" "__Lib_LcdConsts.mcl" "__Lib_Lcd.mcl"	 
+hint: 0	1139	Available RAM: 1515 [bytes], Available ROM: 32768 [bytes]	 
+hint: 6	1354	 warning: "/*" within comment     /* ************************************************************************** */	C:\Users\michelle\Documents\GitHub\PIC18F45K22\hex_to_binary\hex_to_binary.c
+diagnostics: 0	122	Compilation Started	display_utils.h
+warning: 115	1508	Implicit conversion of int to ptr	hex_to_binary.c
+warning: 117	1508	Implicit conversion of int to ptr	hex_to_binary.c
+warning: 130	1506	Implicit conversion of pointer to int	hex_to_binary.c
+warning: 130	1506	Implicit conversion of pointer to int	hex_to_binary.c
+diagnostics: 154	123	Compiled Successfully	hex_to_binary.c
+diagnostics: 0	122	Compilation Started	Display_Utils.c
+diagnostics: 15	123	Compiled Successfully	Display_Utils.c
+diagnostics: 0	127	All files Compiled in 94 ms	 
+hint: 0	1144	Used RAM (bytes): 83 (5%)  Free RAM (bytes): 1432 (95%)	Used RAM (bytes): 83 (5%)  Free RAM (bytes): 1432 (95%)
+hint: 0	1144	Used ROM (bytes): 1899 (6%)  Free ROM (bytes): 30869 (94%)	Used ROM (bytes): 1899 (6%)  Free ROM (bytes): 30869 (94%)
+diagnostics: 0	125	Project Linked Successfully	hex_to_binary.mcppi
+diagnostics: 0	128	Linked in 31 ms	 
+diagnostics: 0	129	Project 'hex_to_binary.mcppi' completed: 281 ms	 
+diagnostics: 0	103	Finished successfully: 18 Mar 2025, 21:12:09	hex_to_binary.mcppi

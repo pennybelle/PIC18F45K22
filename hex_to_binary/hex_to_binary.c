@@ -1,11 +1,10 @@
-/* File Name: knight_rider.c
+/* File Name: hex_to_binary.c
    Developed By: Penny Belle
    Submission To: AECT/AET Dept.
    Development Date: 2024-03-18
-   Description: Use different numbering systems in C to manipulate bits on PORTC
+   Description: Display binary variants of hex and decimal values
 /* ************************************************************************** */
 
-#include <stdbool.h>
 #include "Display_Utils.h"
 
 // Seven Segment Display prep
@@ -30,22 +29,31 @@ sbit LCD_D7_Direction at TRISB3_bit;
 
 char i;                              // Loop variable
 
-char txt1[] = "Knight Rider";
-char txt2[] = "Delay: 500ms";
-char txt3[] = "Delay: 600ms";
-char txt4[] = "Delay: 150ms";
-char txt5[] = "Variable Delay";
+char txt1[] = "Show Binary Val";
 char signature[] = "By Penny Belle";
 // End Lcd module prep
 
-// init value used for converting to string
-int number = 1;
+int number;
 
-// global delay in milliseconds
-unsigned int delay_in_ms = 500;
-unsigned int delay_taken = 0;
-unsigned int iteration;
-unsigned int max_iterations;
+int delay = 10000;
+
+int dec1 = 255;
+int dec2 = 129;
+int dec3 = 170;
+int dec4 = 55;
+int dec5 = 85;
+
+int bin1 = 0b10101010;
+int bin2 = 0b01010101;
+int bin3 = 0b11111111;
+int bin4 = 0b11110000;
+int bin5 = 0b00001111;
+
+int hex1 = 0x55;
+int hex2 = 0xAA;
+int hex3 = 0xFE;
+int hex4 = 0xAB;
+int hex5 = 0x81;
 
 void interrupt() {
   LATA = 0;                             // Turn off all 7seg displays
@@ -109,75 +117,38 @@ void lcd_display_out(char first_line, char second_line) {
   Lcd_Out(2,1,second_line);                 // Write text in second row
 }
 
-void bit_walk(int delay) {
-  PORTC = number; // set PORTA to number
+void do_the_thing(int i) {
+  number = i;
+  PORTC = number;
+  seven_seg_out();
   vdelay_ms(delay);
-  number *= 2; // multiply decimal by 2 to move bit left one character
-}
-
-void reverse_bit_walk(int delay) {
-  PORTC = number; // set PORTA to number
-  vdelay_ms(delay);
-  number /= 2; // multiply decimal by 2 to move bit left one character
-}
-
-void knight_rider(int delay, bool is_variable) {
-  iteration = 0;
-  if (is_variable) {
-    max_iterations = 10000;  // increase iterations for variable run
-  } else {
-    max_iterations = 15;
-  }
-  
-  // loop through 15 iterations if not variable else 10000 iterations (fast)
-  while (iteration <= max_iterations) {
-    // walk bit forward until it reachest 128 (msb)
-    while (number != 128) {
-      if (is_variable && delay >= 20) {
-        delay -= 20;
-      }
-      seven_seg_out();
-      bit_walk(delay);
-      iteration++;
-    }
-    
-    // walk bit backward until it reachest 1 (lsb)
-    while (number != 1) {
-      if (is_variable && delay >= 20) {
-        delay -= 20;
-      }
-      seven_seg_out();
-      reverse_bit_walk(delay);
-      iteration++;
-    }
-  }
 }
 
 void main() {
   lcd_display_prep();
   seven_seg_prep();
   lcd_display_out(txt1, signature);
-
-//  TRISC=0b00000000; // set port C as output for all bits
-  TRISC=0x00;       // same as above but with hex instead of binary
-  PORTC=0b00000000; // clear port C (set all to logic low or 0 volts)
-
-//   wait for plug
-//  delay_ms(3000);
-
+  
+  TRISC = 0x00; // set port C as output
+  PORTC = 0x00; // set all bits in port C to 0
+  
   while (1) {
-    lcd_display_out(txt1, txt2);
-    knight_rider(500, false);
+    do_the_thing(dec1);
+    do_the_thing(dec2);
+    do_the_thing(dec3);
+    do_the_thing(dec4);
+    do_the_thing(dec5);
 
-    lcd_display_out(txt1, txt3);
-    knight_rider(600, false);
-
-    lcd_display_out(txt1, txt4);
-    knight_rider(150, false);
-
-    lcd_display_out(txt1, txt5);
-    knight_rider(500, true);  // variable delay, increases each iteration
+    do_the_thing(bin1);
+    do_the_thing(bin2);
+    do_the_thing(bin3);
+    do_the_thing(bin4);
+    do_the_thing(bin5);
     
-    delay_ms(2000);
+    do_the_thing(hex1);
+    do_the_thing(hex2);
+    do_the_thing(hex3);
+    do_the_thing(hex4);
+    do_the_thing(hex5);
   }
 }
