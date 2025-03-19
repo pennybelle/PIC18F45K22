@@ -86,6 +86,7 @@ void lcd_update(char i) {
 void main() {
   lcd_display_prep();
   lcd_display_out(txt1, signature);
+  input = signature;
 
   TRISE = 0xFF; // set port E as input (im using this to toggle bit inversion)
   TRISD = 0xFF; // set port D as input (this is the input data that gets output)

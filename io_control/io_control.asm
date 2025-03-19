@@ -86,21 +86,24 @@ _main:
 	MOVLW       _signature+0
 	MOVWF       FARG_lcd_display_out_second_line+0 
 	CALL        _lcd_display_out+0, 0
-;io_control.c,90 :: 		TRISE = 0xFF; // set port E as input (im using this to toggle bit inversion)
+;io_control.c,89 :: 		input = signature;
+	MOVLW       _signature+0
+	MOVWF       _input+0 
+;io_control.c,91 :: 		TRISE = 0xFF; // set port E as input (im using this to toggle bit inversion)
 	MOVLW       255
 	MOVWF       TRISE+0 
-;io_control.c,91 :: 		TRISD = 0xFF; // set port D as input (this is the input data that gets output)
+;io_control.c,92 :: 		TRISD = 0xFF; // set port D as input (this is the input data that gets output)
 	MOVLW       255
 	MOVWF       TRISD+0 
-;io_control.c,92 :: 		TRISC = 0x00; // set port C as output
+;io_control.c,93 :: 		TRISC = 0x00; // set port C as output
 	CLRF        TRISC+0 
-;io_control.c,93 :: 		PORTC = 0x00; // set all bits in port C to 0
+;io_control.c,94 :: 		PORTC = 0x00; // set all bits in port C to 0
 	CLRF        PORTC+0 
-;io_control.c,94 :: 		ANSELD = 0x00; // turn off ADC latches to accept TTL inputs
+;io_control.c,95 :: 		ANSELD = 0x00; // turn off ADC latches to accept TTL inputs
 	CLRF        ANSELD+0 
-;io_control.c,95 :: 		ANSELE = 0x00;
+;io_control.c,96 :: 		ANSELE = 0x00;
 	CLRF        ANSELE+0 
-;io_control.c,97 :: 		delay_ms(3000); // wait for plug
+;io_control.c,98 :: 		delay_ms(3000); // wait for plug
 	MOVLW       31
 	MOVWF       R11, 0
 	MOVLW       113
@@ -115,27 +118,27 @@ L_main1:
 	DECFSZ      R11, 1, 1
 	BRA         L_main1
 	NOP
-;io_control.c,99 :: 		while (1) {
+;io_control.c,100 :: 		while (1) {
 L_main2:
-;io_control.c,100 :: 		PORTC = 0x00;
+;io_control.c,101 :: 		PORTC = 0x00;
 	CLRF        PORTC+0 
-;io_control.c,105 :: 		if (PORTE) {
+;io_control.c,106 :: 		if (PORTE) {
 	MOVF        PORTE+0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_main4
-;io_control.c,106 :: 		if (PORTD == 0b00000011) {
+;io_control.c,107 :: 		if (PORTD == 0b00000101) {
 	MOVF        PORTD+0, 0 
-	XORLW       3
+	XORLW       5
 	BTFSS       STATUS+0, 2 
 	GOTO        L_main5
-;io_control.c,107 :: 		lcd_update(txt4);
+;io_control.c,108 :: 		lcd_update(txt4);
 	MOVLW       _txt4+0
 	MOVWF       FARG_lcd_update_i+0 
 	CALL        _lcd_update+0, 0
-;io_control.c,108 :: 		PORTC = 0xFF;
+;io_control.c,109 :: 		PORTC = 0xFF;
 	MOVLW       255
 	MOVWF       PORTC+0 
-;io_control.c,109 :: 		delay_ms(500);
+;io_control.c,110 :: 		delay_ms(500);
 	MOVLW       6
 	MOVWF       R11, 0
 	MOVLW       19
@@ -151,9 +154,9 @@ L_main6:
 	BRA         L_main6
 	NOP
 	NOP
-;io_control.c,110 :: 		PORTC = 0x00;
+;io_control.c,111 :: 		PORTC = 0x00;
 	CLRF        PORTC+0 
-;io_control.c,111 :: 		delay_ms(500);
+;io_control.c,112 :: 		delay_ms(500);
 	MOVLW       6
 	MOVWF       R11, 0
 	MOVLW       19
@@ -169,33 +172,33 @@ L_main7:
 	BRA         L_main7
 	NOP
 	NOP
-;io_control.c,112 :: 		} else {
+;io_control.c,113 :: 		} else {
 	GOTO        L_main8
 L_main5:
-;io_control.c,113 :: 		lcd_update(txt2);
+;io_control.c,114 :: 		lcd_update(txt2);
 	MOVLW       _txt2+0
 	MOVWF       FARG_lcd_update_i+0 
 	CALL        _lcd_update+0, 0
-;io_control.c,114 :: 		PORTC = PORTD;
+;io_control.c,115 :: 		PORTC = PORTD;
 	MOVF        PORTD+0, 0 
 	MOVWF       PORTC+0 
-;io_control.c,115 :: 		}
+;io_control.c,116 :: 		}
 L_main8:
-;io_control.c,116 :: 		} else {
+;io_control.c,117 :: 		} else {
 	GOTO        L_main9
 L_main4:
-;io_control.c,117 :: 		lcd_update(txt3);
+;io_control.c,118 :: 		lcd_update(txt3);
 	MOVLW       _txt3+0
 	MOVWF       FARG_lcd_update_i+0 
 	CALL        _lcd_update+0, 0
-;io_control.c,118 :: 		PORTC = ~PORTD;
+;io_control.c,119 :: 		PORTC = ~PORTD;
 	COMF        PORTD+0, 0 
 	MOVWF       PORTC+0 
-;io_control.c,119 :: 		}
-L_main9:
 ;io_control.c,120 :: 		}
-	GOTO        L_main2
+L_main9:
 ;io_control.c,121 :: 		}
+	GOTO        L_main2
+;io_control.c,122 :: 		}
 L_end_main:
 	GOTO        $+0
 ; end of _main

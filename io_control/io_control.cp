@@ -73,6 +73,7 @@ void lcd_update(char i) {
 void main() {
  lcd_display_prep();
  lcd_display_out(txt1, signature);
+ input = signature;
 
  TRISE = 0xFF;
  TRISD = 0xFF;
@@ -90,7 +91,7 @@ void main() {
 
 
  if (PORTE) {
- if (PORTD == 0b00000011) {
+ if (PORTD == 0b00000101) {
  lcd_update(txt4);
  PORTC = 0xFF;
  delay_ms(500);
