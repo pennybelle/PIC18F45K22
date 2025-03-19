@@ -13,10 +13,10 @@ warning: 117	1506	Implicit conversion of pointer to int	io_control.c
 diagnostics: 121	123	Compiled Successfully	io_control.c
 diagnostics: 0	122	Compilation Started	Display_Utils.c
 diagnostics: 15	123	Compiled Successfully	Display_Utils.c
-diagnostics: 0	127	All files Compiled in 110 ms	 
+diagnostics: 0	127	All files Compiled in 125 ms	 
 hint: 0	1144	Used RAM (bytes): 75 (5%)  Free RAM (bytes): 1440 (95%)	Used RAM (bytes): 75 (5%)  Free RAM (bytes): 1440 (95%)
 hint: 0	1144	Used ROM (bytes): 844 (3%)  Free ROM (bytes): 31924 (97%)	Used ROM (bytes): 844 (3%)  Free ROM (bytes): 31924 (97%)
 diagnostics: 0	125	Project Linked Successfully	io_control.mcppi
-diagnostics: 0	128	Linked in 15 ms	 
-diagnostics: 0	129	Project 'io_control.mcppi' completed: 281 ms	 
-diagnostics: 0	103	Finished successfully: 18 Mar 2025, 22:23:51	io_control.mcppi
+diagnostics: 0	128	Linked in 16 ms	 
+diagnostics: 0	129	Project 'io_control.mcppi' completed: 297 ms	 
+diagnostics: 0	103	Finished successfully: 18 Mar 2025, 22:25:09	io_control.mcppi

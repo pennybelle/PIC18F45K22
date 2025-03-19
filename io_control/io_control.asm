@@ -123,9 +123,9 @@ L_main2:
 	MOVF        PORTE+0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_main4
-;io_control.c,106 :: 		if (PORTD == 0b00000001) {
+;io_control.c,106 :: 		if (PORTD == 0b00000011) {
 	MOVF        PORTD+0, 0 
-	XORLW       1
+	XORLW       3
 	BTFSS       STATUS+0, 2 
 	GOTO        L_main5
 ;io_control.c,107 :: 		lcd_update(txt4);
