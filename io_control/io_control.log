@@ -18,5 +18,5 @@ hint: 0	1144	Used RAM (bytes): 75 (5%)  Free RAM (bytes): 1440 (95%)	Used RAM (b
 hint: 0	1144	Used ROM (bytes): 844 (3%)  Free ROM (bytes): 31924 (97%)	Used ROM (bytes): 844 (3%)  Free ROM (bytes): 31924 (97%)
 diagnostics: 0	125	Project Linked Successfully	io_control.mcppi
 diagnostics: 0	128	Linked in 15 ms	 
-diagnostics: 0	129	Project 'io_control.mcppi' completed: 265 ms	 
-diagnostics: 0	103	Finished successfully: 18 Mar 2025, 22:22:07	io_control.mcppi
+diagnostics: 0	129	Project 'io_control.mcppi' completed: 281 ms	 
+diagnostics: 0	103	Finished successfully: 18 Mar 2025, 22:23:51	io_control.mcppi
