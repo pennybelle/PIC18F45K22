@@ -128,7 +128,10 @@ void knight_rider(int delay,  _Bool  is_variable) {
  } else {
  max_iterations = 15;
  }
+
+
  while (iteration <= max_iterations) {
+
  while (number != 128) {
  if (is_variable && delay >= 20) {
  delay -= 20;
@@ -137,6 +140,8 @@ void knight_rider(int delay,  _Bool  is_variable) {
  bit_walk(delay);
  iteration++;
  }
+
+
  while (number != 1) {
  if (is_variable && delay >= 20) {
  delay -= 20;
@@ -161,16 +166,8 @@ void main() {
 
 
  while (1) {
- lcd_display_out(txt1, txt2);
- knight_rider(500,  0 );
 
- lcd_display_out(txt1, txt3);
- knight_rider(600,  0 );
-
- lcd_display_out(txt1, txt4);
- knight_rider(150,  0 );
-
- lcd_display_out(txt1, txt5);
- knight_rider(500,  1 );
+ knight_rider(1,  0 );
+#line 182 "C:/Users/michelle/Documents/GitHub/PIC18F45K22/knight_rider/knight_rider.c"
  }
 }

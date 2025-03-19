@@ -314,7 +314,7 @@ _knight_rider:
 	MOVF        FARG_knight_rider_is_variable+0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_knight_rider2
-;knight_rider.c,127 :: 		max_iterations = 10000;
+;knight_rider.c,127 :: 		max_iterations = 10000;  // increase iterations for variable run
 	MOVLW       16
 	MOVWF       _max_iterations+0 
 	MOVLW       39
@@ -329,7 +329,7 @@ L_knight_rider2:
 	MOVWF       _max_iterations+1 
 ;knight_rider.c,130 :: 		}
 L_knight_rider3:
-;knight_rider.c,131 :: 		while (iteration <= max_iterations) {
+;knight_rider.c,133 :: 		while (iteration <= max_iterations) {
 L_knight_rider4:
 	MOVF        _iteration+1, 0 
 	SUBWF       _max_iterations+1, 0 
@@ -340,7 +340,7 @@ L_knight_rider4:
 L__knight_rider30:
 	BTFSS       STATUS+0, 0 
 	GOTO        L_knight_rider5
-;knight_rider.c,132 :: 		while (number != 128) {
+;knight_rider.c,135 :: 		while (number != 128) {
 L_knight_rider6:
 	MOVLW       0
 	XORWF       _number+1, 0 
@@ -351,7 +351,7 @@ L_knight_rider6:
 L__knight_rider31:
 	BTFSC       STATUS+0, 2 
 	GOTO        L_knight_rider7
-;knight_rider.c,133 :: 		if (is_variable && delay >= 20) {
+;knight_rider.c,136 :: 		if (is_variable && delay >= 20) {
 	MOVF        FARG_knight_rider_is_variable+0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_knight_rider10
@@ -368,28 +368,28 @@ L__knight_rider32:
 	BTFSS       STATUS+0, 0 
 	GOTO        L_knight_rider10
 L__knight_rider19:
-;knight_rider.c,134 :: 		delay -= 20;
+;knight_rider.c,137 :: 		delay -= 20;
 	MOVLW       20
 	SUBWF       FARG_knight_rider_delay+0, 1 
 	MOVLW       0
 	SUBWFB      FARG_knight_rider_delay+1, 1 
-;knight_rider.c,135 :: 		}
+;knight_rider.c,138 :: 		}
 L_knight_rider10:
-;knight_rider.c,136 :: 		seven_seg_out();
+;knight_rider.c,139 :: 		seven_seg_out();
 	CALL        _seven_seg_out+0, 0
-;knight_rider.c,137 :: 		bit_walk(delay);
+;knight_rider.c,140 :: 		bit_walk(delay);
 	MOVF        FARG_knight_rider_delay+0, 0 
 	MOVWF       FARG_bit_walk_delay+0 
 	MOVF        FARG_knight_rider_delay+1, 0 
 	MOVWF       FARG_bit_walk_delay+1 
 	CALL        _bit_walk+0, 0
-;knight_rider.c,138 :: 		iteration++;
+;knight_rider.c,141 :: 		iteration++;
 	INFSNZ      _iteration+0, 1 
 	INCF        _iteration+1, 1 
-;knight_rider.c,139 :: 		}
+;knight_rider.c,142 :: 		}
 	GOTO        L_knight_rider6
 L_knight_rider7:
-;knight_rider.c,140 :: 		while (number != 1) {
+;knight_rider.c,145 :: 		while (number != 1) {
 L_knight_rider11:
 	MOVLW       0
 	XORWF       _number+1, 0 
@@ -400,7 +400,7 @@ L_knight_rider11:
 L__knight_rider33:
 	BTFSC       STATUS+0, 2 
 	GOTO        L_knight_rider12
-;knight_rider.c,141 :: 		if (is_variable && delay >= 20) {
+;knight_rider.c,146 :: 		if (is_variable && delay >= 20) {
 	MOVF        FARG_knight_rider_is_variable+0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_knight_rider15
@@ -417,110 +417,64 @@ L__knight_rider34:
 	BTFSS       STATUS+0, 0 
 	GOTO        L_knight_rider15
 L__knight_rider18:
-;knight_rider.c,142 :: 		delay -= 20;
+;knight_rider.c,147 :: 		delay -= 20;
 	MOVLW       20
 	SUBWF       FARG_knight_rider_delay+0, 1 
 	MOVLW       0
 	SUBWFB      FARG_knight_rider_delay+1, 1 
-;knight_rider.c,143 :: 		}
+;knight_rider.c,148 :: 		}
 L_knight_rider15:
-;knight_rider.c,144 :: 		seven_seg_out();
+;knight_rider.c,149 :: 		seven_seg_out();
 	CALL        _seven_seg_out+0, 0
-;knight_rider.c,145 :: 		reverse_bit_walk(delay);
+;knight_rider.c,150 :: 		reverse_bit_walk(delay);
 	MOVF        FARG_knight_rider_delay+0, 0 
 	MOVWF       FARG_reverse_bit_walk_delay+0 
 	MOVF        FARG_knight_rider_delay+1, 0 
 	MOVWF       FARG_reverse_bit_walk_delay+1 
 	CALL        _reverse_bit_walk+0, 0
-;knight_rider.c,146 :: 		iteration++;
+;knight_rider.c,151 :: 		iteration++;
 	INFSNZ      _iteration+0, 1 
 	INCF        _iteration+1, 1 
-;knight_rider.c,147 :: 		}
+;knight_rider.c,152 :: 		}
 	GOTO        L_knight_rider11
 L_knight_rider12:
-;knight_rider.c,148 :: 		}
+;knight_rider.c,153 :: 		}
 	GOTO        L_knight_rider4
 L_knight_rider5:
-;knight_rider.c,149 :: 		}
+;knight_rider.c,154 :: 		}
 L_end_knight_rider:
 	RETURN      0
 ; end of _knight_rider
 
 _main:
 
-;knight_rider.c,151 :: 		void main() {
-;knight_rider.c,152 :: 		lcd_display_prep();
+;knight_rider.c,156 :: 		void main() {
+;knight_rider.c,157 :: 		lcd_display_prep();
 	CALL        _lcd_display_prep+0, 0
-;knight_rider.c,153 :: 		seven_seg_prep();
+;knight_rider.c,158 :: 		seven_seg_prep();
 	CALL        _seven_seg_prep+0, 0
-;knight_rider.c,154 :: 		lcd_display_out(txt1, signature);
+;knight_rider.c,159 :: 		lcd_display_out(txt1, signature);
 	MOVLW       _txt1+0
 	MOVWF       FARG_lcd_display_out_first_line+0 
 	MOVLW       _signature+0
 	MOVWF       FARG_lcd_display_out_second_line+0 
 	CALL        _lcd_display_out+0, 0
-;knight_rider.c,157 :: 		TRISC=0x00;       // same as above but with hex instead of binary
+;knight_rider.c,162 :: 		TRISC=0x00;       // same as above but with hex instead of binary
 	CLRF        TRISC+0 
-;knight_rider.c,158 :: 		PORTC=0b00000000; // clear port C (set all to logic low or 0 volts)
+;knight_rider.c,163 :: 		PORTC=0b00000000; // clear port C (set all to logic low or 0 volts)
 	CLRF        PORTC+0 
-;knight_rider.c,163 :: 		while (1) {
+;knight_rider.c,168 :: 		while (1) {
 L_main16:
-;knight_rider.c,164 :: 		lcd_display_out(txt1, txt2);
-	MOVLW       _txt1+0
-	MOVWF       FARG_lcd_display_out_first_line+0 
-	MOVLW       _txt2+0
-	MOVWF       FARG_lcd_display_out_second_line+0 
-	CALL        _lcd_display_out+0, 0
-;knight_rider.c,165 :: 		knight_rider(500, false);
-	MOVLW       244
-	MOVWF       FARG_knight_rider_delay+0 
+;knight_rider.c,170 :: 		knight_rider(1, false);
 	MOVLW       1
-	MOVWF       FARG_knight_rider_delay+1 
-	CLRF        FARG_knight_rider_is_variable+0 
-	CALL        _knight_rider+0, 0
-;knight_rider.c,167 :: 		lcd_display_out(txt1, txt3);
-	MOVLW       _txt1+0
-	MOVWF       FARG_lcd_display_out_first_line+0 
-	MOVLW       _txt3+0
-	MOVWF       FARG_lcd_display_out_second_line+0 
-	CALL        _lcd_display_out+0, 0
-;knight_rider.c,168 :: 		knight_rider(600, false);
-	MOVLW       88
-	MOVWF       FARG_knight_rider_delay+0 
-	MOVLW       2
-	MOVWF       FARG_knight_rider_delay+1 
-	CLRF        FARG_knight_rider_is_variable+0 
-	CALL        _knight_rider+0, 0
-;knight_rider.c,170 :: 		lcd_display_out(txt1, txt4);
-	MOVLW       _txt1+0
-	MOVWF       FARG_lcd_display_out_first_line+0 
-	MOVLW       _txt4+0
-	MOVWF       FARG_lcd_display_out_second_line+0 
-	CALL        _lcd_display_out+0, 0
-;knight_rider.c,171 :: 		knight_rider(150, false);
-	MOVLW       150
 	MOVWF       FARG_knight_rider_delay+0 
 	MOVLW       0
 	MOVWF       FARG_knight_rider_delay+1 
 	CLRF        FARG_knight_rider_is_variable+0 
 	CALL        _knight_rider+0, 0
-;knight_rider.c,173 :: 		lcd_display_out(txt1, txt5);
-	MOVLW       _txt1+0
-	MOVWF       FARG_lcd_display_out_first_line+0 
-	MOVLW       _txt5+0
-	MOVWF       FARG_lcd_display_out_second_line+0 
-	CALL        _lcd_display_out+0, 0
-;knight_rider.c,174 :: 		knight_rider(500, true);
-	MOVLW       244
-	MOVWF       FARG_knight_rider_delay+0 
-	MOVLW       1
-	MOVWF       FARG_knight_rider_delay+1 
-	MOVLW       1
-	MOVWF       FARG_knight_rider_is_variable+0 
-	CALL        _knight_rider+0, 0
-;knight_rider.c,175 :: 		}
+;knight_rider.c,182 :: 		}
 	GOTO        L_main16
-;knight_rider.c,176 :: 		}
+;knight_rider.c,183 :: 		}
 L_end_main:
 	GOTO        $+0
 ; end of _main
