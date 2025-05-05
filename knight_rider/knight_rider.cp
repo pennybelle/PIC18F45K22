@@ -160,7 +160,7 @@ void main() {
 
 
  TRISC=0x00;
- PORTC=0b00000000;
+ PORTC=0x00;
 
 
 

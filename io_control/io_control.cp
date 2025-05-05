@@ -24,9 +24,7 @@ char signature[] = "By Penny Belle";
 
 
 char input;
-
 int output;
-
 int number;
 
 int delay = 10000;
@@ -91,6 +89,9 @@ void main() {
 
 
  if (PORTE) {
+ lcd_update(txt3);
+ PORTC = ~PORTD;
+ } else {
  if (PORTD == 0x05) {
  lcd_update(txt4);
  PORTC = 0xFF;
@@ -101,9 +102,6 @@ void main() {
  lcd_update(txt2);
  PORTC = PORTD;
  }
- } else {
- lcd_update(txt3);
- PORTC = ~PORTD;
  }
  }
 }

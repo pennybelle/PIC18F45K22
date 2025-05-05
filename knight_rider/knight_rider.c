@@ -160,14 +160,14 @@ void main() {
 
 //  TRISC=0b00000000; // set port C as output for all bits
   TRISC=0x00;       // same as above but with hex instead of binary
-  PORTC=0b00000000; // clear port C (set all to logic low or 0 volts)
+  PORTC=0x00; // clear port C (set all to logic low or 0 volts)
 
 //   wait for plug
 //  delay_ms(3000);
 
   while (1) {
     lcd_display_out(txt1, txt2);
-    knight_rider(500, false);
+    knight_rider(500, false); // false bc delay is static
 
     lcd_display_out(txt1, txt3);
     knight_rider(600, false);

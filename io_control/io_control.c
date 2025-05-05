@@ -37,9 +37,7 @@ char signature[] = "By Penny Belle";
 // End Lcd module prep
 
 char input;
-
 int output;
-
 int number;
 
 int delay = 10000;
@@ -104,6 +102,9 @@ void main() {
     // teach me how to use them but i already know how so i refactored
     // the logic a bit because it doesn't need to be anything more than:
     if (PORTE) {
+      lcd_update(txt3);
+      PORTC = ~PORTD;
+    } else {
       if (PORTD == 0x05) {
         lcd_update(txt4);
         PORTC = 0xFF;
@@ -114,9 +115,6 @@ void main() {
         lcd_update(txt2);
         PORTC = PORTD;
       }
-    } else {
-      lcd_update(txt3);
-      PORTC = ~PORTD;
     }
   }
 }

@@ -2,22 +2,22 @@
 hint: 0	1139	Available RAM: 1515 [bytes], Available ROM: 32768 [bytes]	 
 hint: 6	1354	 warning: "/*" within comment     /* ************************************************************************** */	C:\Users\michelle\Documents\GitHub\PIC18F45K22\io_control\io_control.c
 diagnostics: 0	122	Compilation Started	io_control.c
+warning: 72	1508	Implicit conversion of int to ptr	io_control.c
 warning: 74	1508	Implicit conversion of int to ptr	io_control.c
-warning: 76	1508	Implicit conversion of int to ptr	io_control.c
-warning: 82	1506	Implicit conversion of pointer to int	io_control.c
-warning: 88	1506	Implicit conversion of pointer to int	io_control.c
-warning: 88	1506	Implicit conversion of pointer to int	io_control.c
-warning: 89	1506	Implicit conversion of pointer to int	io_control.c
-warning: 108	1506	Implicit conversion of pointer to int	io_control.c
-warning: 114	1506	Implicit conversion of pointer to int	io_control.c
-warning: 118	1506	Implicit conversion of pointer to int	io_control.c
-diagnostics: 122	123	Compiled Successfully	io_control.c
+warning: 80	1506	Implicit conversion of pointer to int	io_control.c
+warning: 86	1506	Implicit conversion of pointer to int	io_control.c
+warning: 86	1506	Implicit conversion of pointer to int	io_control.c
+warning: 87	1506	Implicit conversion of pointer to int	io_control.c
+warning: 105	1506	Implicit conversion of pointer to int	io_control.c
+warning: 109	1506	Implicit conversion of pointer to int	io_control.c
+warning: 115	1506	Implicit conversion of pointer to int	io_control.c
+diagnostics: 120	123	Compiled Successfully	io_control.c
 diagnostics: 0	122	Compilation Started	Display_Utils.c
 diagnostics: 15	123	Compiled Successfully	Display_Utils.c
-diagnostics: 0	127	All files Compiled in 110 ms	 
+diagnostics: 0	127	All files Compiled in 156 ms	 
 hint: 0	1144	Used RAM (bytes): 75 (5%)  Free RAM (bytes): 1440 (95%)	Used RAM (bytes): 75 (5%)  Free RAM (bytes): 1440 (95%)
 hint: 0	1144	Used ROM (bytes): 848 (3%)  Free ROM (bytes): 31920 (97%)	Used ROM (bytes): 848 (3%)  Free ROM (bytes): 31920 (97%)
 diagnostics: 0	125	Project Linked Successfully	io_control.mcppi
-diagnostics: 0	128	Linked in 15 ms	 
-diagnostics: 0	129	Project 'io_control.mcppi' completed: 265 ms	 
-diagnostics: 0	103	Finished successfully: 18 Mar 2025, 22:36:00	io_control.mcppi
+diagnostics: 0	128	Linked in 31 ms	 
+diagnostics: 0	129	Project 'io_control.mcppi' completed: 344 ms	 
+diagnostics: 0	103	Finished successfully: 25 Mar 2025, 14:27:28	io_control.mcppi

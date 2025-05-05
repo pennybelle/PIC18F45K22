@@ -461,7 +461,7 @@ _main:
 	CALL        _lcd_display_out+0, 0
 ;knight_rider.c,162 :: 		TRISC=0x00;       // same as above but with hex instead of binary
 	CLRF        TRISC+0 
-;knight_rider.c,163 :: 		PORTC=0b00000000; // clear port C (set all to logic low or 0 volts)
+;knight_rider.c,163 :: 		PORTC=0x00; // clear port C (set all to logic low or 0 volts)
 	CLRF        PORTC+0 
 ;knight_rider.c,168 :: 		while (1) {
 L_main16:
@@ -471,7 +471,7 @@ L_main16:
 	MOVLW       _txt2+0
 	MOVWF       FARG_lcd_display_out_second_line+0 
 	CALL        _lcd_display_out+0, 0
-;knight_rider.c,170 :: 		knight_rider(500, false);
+;knight_rider.c,170 :: 		knight_rider(500, false); // false bc delay is static
 	MOVLW       244
 	MOVWF       FARG_knight_rider_delay+0 
 	MOVLW       1

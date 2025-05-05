@@ -31,11 +31,12 @@ char txt3[] = "Using: Octal";
 char txt4[] = "Using: Hex";
 char txt5[] = "Using: Decimal";
 char txt6[] = "Binary Display";
+char txt7[] = "Delay: 10sec";
 char signature[] = "By Penny Belle";
 
 
 
-int number;
+int number = 0;
 
 
 int delay_in_ms = 500;
@@ -121,7 +122,7 @@ void procedure_loop(int number_1, int number_2) {
  delay_ms(1500);
  LATD = 0;
 }
-#line 140 "C:/Users/michelle/Documents/GitHub/PIC18F45K22/numbering_systems/numbering_systems.c"
+
 display_bits(int i) {
  number = i;
  seven_seg_out();
@@ -131,12 +132,12 @@ display_bits(int i) {
 
 void main() {
  lcd_display_prep();
- seven_seg_prep();
  lcd_display_out(txt1, signature);
+ seven_seg_prep();
+ seven_seg_out();
 
- TRISC=0b00000000;
  TRISC=0x00;
- PORTC=0b00000000;
+ PORTC=0x00;
 
 
  delay_ms(3000);
@@ -162,7 +163,7 @@ void main() {
  lcd_display_out(txt1, txt5);
  procedure_loop(85, 170);
 
- lcd_display_out(txt6, signature);
+ lcd_display_out(txt6, txt7);
  display_bits(0xA5);
  display_bits(186);
  display_bits(055);

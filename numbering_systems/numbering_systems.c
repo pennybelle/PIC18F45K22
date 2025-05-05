@@ -35,11 +35,12 @@ char txt3[] = "Using: Octal";
 char txt4[] = "Using: Hex";
 char txt5[] = "Using: Decimal";
 char txt6[] = "Binary Display";
+char txt7[] = "Delay: 10sec";
 char signature[] = "By Penny Belle";
 // End Lcd module prep
 
 // init value used for converting to string
-int number;
+int number = 0;
 
 // global delay in milliseconds
 int delay_in_ms = 500;
@@ -126,17 +127,6 @@ void procedure_loop(int number_1, int number_2) {
     LATD  = 0; // clear seven seg display
 }
 
-//void bits(int i){
-//  if (!i) {
-//    return
-//  };
-//  bits(i>>1);
-//  out = i&1
-//  lcd_display_out(txt1, out);
-//  printf(“%d”,i&1);
-//  return;
-//}
-
 display_bits(int i) {
   number = i;
   seven_seg_out();
@@ -146,12 +136,12 @@ display_bits(int i) {
 
 void main() {
   lcd_display_prep();
-  seven_seg_prep();
   lcd_display_out(txt1, signature);
+  seven_seg_prep();
+  seven_seg_out();
 
-  TRISC=0b00000000; // set port C as output for all bits
-  TRISC=0x00;       // same as above but with hex instead of binary
-  PORTC=0b00000000; // clear port C (set all to logic low or 0 volts)
+  TRISC=0x00; // set port C as output for all bits
+  PORTC=0x00; // clear port C (set all to logic low or 0 volts)
   
   // wait for plug
   delay_ms(3000);
@@ -177,7 +167,7 @@ void main() {
     lcd_display_out(txt1, txt5);
     procedure_loop(85, 170);
     
-    lcd_display_out(txt6, signature);
+    lcd_display_out(txt6, txt7);
     display_bits(0xA5);
     display_bits(186);
     display_bits(055);
