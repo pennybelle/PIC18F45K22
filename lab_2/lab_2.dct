@@ -240,7 +240,6 @@ bgst
 bgst_bit
 bgvst
 bgvst_bit
-bin1
 boen
 boen_bit
 boen_ssp1con3_bit
@@ -643,7 +642,6 @@ dc5b0
 dc5b0_bit
 dc5b1
 dc5b1_bit
-dec1
 delay_100ms
 delay_10ms
 delay_10us
@@ -797,8 +795,6 @@ go_done
 go_done_bit
 go_not_done
 go_not_done_bit
-hex1
-hex2
 hfiofs
 hfiofs_bit
 hlvdcon
@@ -820,6 +816,7 @@ hlvdl2
 hlvdl2_bit
 hlvdl3
 hlvdl3_bit
+i
 ics_auto
 ics_off
 idissen
@@ -1133,7 +1130,6 @@ nvcfg0
 nvcfg0_bit
 nvcfg1
 nvcfg1_bit
-oct1
 oerr
 oerr_bit
 oerr_rc1sta_bit
