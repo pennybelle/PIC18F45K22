@@ -1,0 +1,8 @@
+main
+	SetupClearPorts
+	option6
+	option5
+	option4
+	option3
+	option2
+	option1
