@@ -36,6 +36,6 @@ void main() {    // Main Function (program core)
   TRISD = 0x00;  // TRISD sets direction of data traffic on PORTD to Output
   
   while(1) {
-    knight_rider();
+    knight_rider(); // run knight rider func
   }
 }
