@@ -69,11 +69,22 @@ void main() {     // Main Function (program core)
   while(1) {
     // run functions
     SetupClearPorts();
+    option1();
+    option2();
+    option3();
+    option4();
+    option5();
+    option6();
+    delay_ms(1000);
+    
+    // run functions in reverse order
+    SetupClearPorts();
     option6();
     option5();
     option4();
     option3();
     option2();
     option1();
+    delay_ms(1000);
   }
 }
