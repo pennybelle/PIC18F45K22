@@ -65,7 +65,9 @@ void option6() {
 }
 
 void main() {     // Main Function (program core)
+  // loop forever
   while(1) {
+    // run functions
     SetupClearPorts();
     option6();
     option5();
