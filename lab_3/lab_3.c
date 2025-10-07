@@ -15,6 +15,7 @@ void SetupClearPorts() {
   PORTD = 0x00;
 }
 
+
 // Flash PORTB on and off (1s delay)
 void option1() {
   PORTB = 0xFF;
@@ -22,6 +23,7 @@ void option1() {
   PORTB = 0x00;
   delay_ms(1000);
 }
+
 
 // Flash PORTC on and off (1s delay)
 void option2() {
@@ -31,6 +33,7 @@ void option2() {
   delay_ms(1000);
 }
 
+
 // Flash PORTD on and off (1s delay)
 void option3() {
   PORTD = 0xFF;
@@ -38,6 +41,7 @@ void option3() {
   PORTD = 0x00;
   delay_ms(1000);
 }
+
 
 // Flash PORTB evens (1s delay)
 void option4() {
@@ -47,6 +51,7 @@ void option4() {
   delay_ms(1000);
 }
 
+
 // Flash PORTC odds (1s delay)
 void option5() {
   PORTC = 0xAA;
@@ -54,6 +59,7 @@ void option5() {
   PORTC = 0x00;
   delay_ms(1000);
 }
+
 
 // Flash PORTD evens and odds (1s delay)
 void option6() {
@@ -64,27 +70,84 @@ void option6() {
   PORTD = 0x00;
 }
 
+
+// Walk bit on PORTC from lsb to msb
+void walkPORTC1() {
+  int i;  // iterator var
+  for(i=1; i<=128; i*=2) {
+    PORTC = i;  // set PORTC to value of iterator var
+    delay_ms(250);
+  }
+}
+
+
+// Walk bit on PORTC from msb to lsb
+void walkPORTC2() {
+  int i;  // iterator var
+  for(i=128; i>=1; i/=2) {
+    PORTC = i;  // set PORTC to value of iterator var
+    delay_ms(250);
+  }
+}
+
+
+// Walk bit on PORTC from lsb to msb
+void walkPORTD1() {
+  int i;  // iterator var
+  for(i=1; i<=128; i*=2) {
+    PORTD = i;  // set PORTC to value of iterator var
+    delay_ms(250);
+  }
+}
+
+
+// Walk bit on PORTC from msb to lsb
+void walkPORTD2() {
+  int i;  // iterator var
+  for(i=128; i>=1; i/=2) {
+    PORTD = i;  // set PORTC to value of iterator var
+    delay_ms(250);
+  }
+}
+
+
 void main() {     // Main Function (program core)
   // loop forever
   while(1) {
     // run functions
-    SetupClearPorts();
-    option1();
-    option2();
-    option3();
-    option4();
-    option5();
-    option6();
-    delay_ms(1000);
+//    SetupClearPorts();
+//    option1();
+//    option2();
+//    option3();
+//    option4();
+//    option5();
+//    option6();
+//    delay_ms(5000);
     
     // run functions in reverse order
+//    SetupClearPorts();
+//    option6();
+//    option5();
+//    option4();
+//    option3();
+//    option2();
+//    option1();
+//    delay_ms(5000);
+
     SetupClearPorts();
-    option6();
-    option5();
-    option4();
-    option3();
-    option2();
-    option1();
-    delay_ms(1000);
+    walkPORTC1();
+    walkPORTC2();
+
+    SetupClearPorts();
+    walkPORTD1();
+    walkPORTD2();
+
+    SetupClearPorts();
+    walkPORTD2();
+    walkPORTD1();
+
+    SetupClearPorts();
+    walkPORTC2();
+    walkPORTC1();
   }
 }
