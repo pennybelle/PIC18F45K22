@@ -15,43 +15,43 @@ depressed.
 Enable Library Functions Sound_Init and Button
 ***************************************************************************** */
 
-void tone_1() {
-  Sound_Play(130.81, 500);  // chord C freq 130.81Hz duration 500ms
+void c_chord(int duration) {
+  Sound_Play(130.81, duration);  // chord C freq 130.81Hz duration 500ms
 }
 
 
-void tone_2() {
-  Sound_Play(146.83, 500);  // chord D freq 146.83Hz duration 500ms
+void d_chord(int duration) {
+  Sound_Play(146.83, duration);  // chord D freq 146.83Hz duration 500ms
 }
 
 
-void tone_3() {
-  Sound_Play(164.81, 500);  // chord E freq 164.81Hz duration 500ms
+void e_chord(int duration) {
+  Sound_Play(164.81, duration);  // chord E freq 164.81Hz duration 500ms
 }
 
 
-void tone_4() {
-  Sound_Play(174.61, 500);  // chord F freq 174.61Hz duration 500ms
+void f_chord(int duration) {
+  Sound_Play(174.61, duration);  // chord F freq 174.61Hz duration 500ms
 }
 
 
-void tone_5() {
-  Sound_Play(196.00, 500);  // chord G freq 196.00Hz duration 500ms
+void g_chord(int duration) {
+  Sound_Play(196.00, duration);  // chord G freq 196.00Hz duration 500ms
 }
 
 
-void tone_6() {
-  Sound_Play(220.00, 500);  // chord H freq 220.00Hz duration 500ms
+void h_chord(int duration) {
+  Sound_Play(220.00, duration);  // chord H freq 220.00Hz duration 500ms
 }
 
 
-void tone_7() {
-  Sound_Play(246.94, 500);  // chord I freq 246.94Hz duration 500ms
+void i_chord(int duration) {
+  Sound_Play(246.94, duration);  // chord I freq 246.94Hz duration 500ms
 }
 
 
-void tone_8() {
-  Sound_Play(261.63, 500);  // chord J freq 261.63Hz duration 500ms
+void j_chord(int duration) {
+  Sound_Play(261.63, duration);  // chord J freq 261.63Hz duration 500ms
 }
 
 
@@ -70,58 +70,47 @@ void main() {     // Main Function (program core)
 
   // loop forever
   while(1) {
+    PORTB = 0x00;  // clear on each pass
+
     // if first bit of PORTB is active, play tone 1
     if (Button(&PORTB,1,1,1)) {
-      while(RB1_bit) {
-        tone_1();
-      }
-      // // loop over sound twice with 4 second delay
-      // for (i=1; i<=2; i++) {
-      //   Sound_Play(440, 2000);
-      //   delay_ms(4000);
-      // }
+      c_chord(50);
+      while(RB0_bit);
     }
 
     if (Button(&PORTB,2,1,1)) {
-      while(RB2_bit) {
-        tone_2();
-      }
+      d_chord(50);
+      while(RB1_bit);
     }
 
     if (Button(&PORTB,3,1,1)) {
-      while(RB3_bit) {
-        tone_3();
-      }
+      e_chord(50);
+      while(RB2_bit);
     }
 
     if (Button(&PORTB,4,1,1)) {
-      while(RB4_bit) {
-        tone_4();
-      }
+      f_chord(50);
+      while(RB3_bit);
     }
 
     if (Button(&PORTB,5,1,1)) {
-      while(RB5_bit) {
-        tone_5();
-      }
+      g_chord(50);
+      while(RB4_bit);
     }
 
     if (Button(&PORTB,6,1,1)) {
-      while(RB6_bit) {
-        tone_6();
-      }
+      h_chord(50);
+      while(RB5_bit);
     }
 
     if (Button(&PORTB,7,1,1)) {
-      while(RB7_bit) {
-        tone_7();
-      }
+      i_chord(50);
+      while(RB6_bit);
     }
 
     if (Button(&PORTB,8,1,1)) {
-      while(RB8_bit) {
-        tone_8();
-      }
+      j_chord(50);
+      while(RB7_bit);
     }
   }
 }
